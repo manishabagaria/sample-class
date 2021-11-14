@@ -1,0 +1,32 @@
+import React from 'react';
+import { StyleSheet, FlatList, Text, View, Image, Button, TouchableOpacity, SafeAreaView, Platform, StatusBar } from 'react-native';
+import {RFValue} from 'react-native-responsive-fontsize';
+import StoryCard from './StoryCard';
+import AppLoading from 'expo-app-loading';
+import * as Font from 'expo-font';
+import firebase from 'firebase';
+import Google from 'epxo-google-app-auth';
+
+let customFonts={
+  'Bubblegum':require('../assets/BubblegumSans-Regular.ttf')
+}
+
+let stories=require('../assets/temp_stories.json');
+
+export default class LoginScreen extends React.Component {
+  constructor(){
+    super();
+    this.state={
+      fontsLoaded:false,      
+    }
+  }
+  async _loadFontsAsync(){
+    await Font.loadAsync(customFonts);
+    this.setState({
+      fontsLoaded:true
+    });
+  }
+  componentDidMount(){
+    this._loadFontsAsync();
+  }
+  }
